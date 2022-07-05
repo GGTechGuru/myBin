@@ -1,0 +1,16 @@
+#! /usr/bin/python
+
+import os
+
+cpid=os.fork()
+
+if (cpid == 0):
+    import subprocess
+
+    DESCRIPTION="Google search: Cheapest houses in the U.S."
+    print(__file__ + ": " + DESCRIPTION)
+
+    logFile = os.environ["HOME"] + "/.logs/" + "house"
+
+    with open(logFile, 'a') as log:
+        subprocess.Popen(["firefox", "https://www.google.com/search?client=firefox&q=cheapest+new+houses+in+the+us"], stdout=log, stderr=log)

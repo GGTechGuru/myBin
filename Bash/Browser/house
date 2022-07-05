@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+DESCRIPTION="Google search: Cheapest houses in the U.S."
+echo "${0}: $DESCRIPTION"
+
+nohup firefox "https://www.google.com/search?client=firefox-b-1-ab&ei=4GnSW_CYIuTk9APqu7v4DQ&q=cheapest+new+houses+in+the+us&oq=cheapest+new+houses+in+the+&gs_l=psy-ab.1.1.33i22i29i30l10.14283.14619..17579...0.0..0.106.362.3j1......0....1..gws-wiz.......0i71j0i22i30.P4tZg-i2ZNs" >> ~/.logs/house &
+

@@ -1,0 +1,15 @@
+
+AudioSegment(…).max
+
+The highest amplitude of any sample in the AudioSegment. Useful for things like normalization (which is provided in pydub.effects.normalize).
+
+from pydub import AudioSegment
+sound = AudioSegment.from_file("/path/to/sound.mp3", format="mp3")    
+peak_amplitude = sound.max
+AudioSegment(…).dBFS
+
+Returns the loudness of the AudioSegment in dBFS (db relative to the maximum possible loudness). A Square wave at maximum amplitude will be roughly 0 dBFS (maximum loudness), whereas a Sine Wave at maximum amplitude will be roughly -3 dBFS.
+
+from pydub import AudioSegment
+sound = AudioSegment.from_file("/path/to/sound.mp3", format="mp3")
+loudness = sound.dBFS

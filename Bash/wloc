@@ -1,0 +1,33 @@
+#! /usr/bin/bash
+
+function doWork() {
+
+        echo; date
+
+	echo -n "Java LOC: "
+	LOJ=`find ${DEV_JAVA_SRC_TOP} -name "*.java" -exec egrep -i "[(@);,{}]" {} \; | wc -l`
+	echo $LOJ
+
+	echo -n "Golang LOC: "
+	LOGO=`find ${DEV_GO_SRC_TOP} -name "*.go" -exec egrep -i "[a-zA-Z]" {} \; | wc -l`
+	echo $LOGO
+
+	echo -n "Node.Js LOC: "
+	LON=`find ${DEV_NODE_SRC_TOP} -name "*.js" -exec egrep -i "[a-zA-Z]" {} \; | wc -l`
+	echo $LON
+
+	echo -n "Python LOC: "
+	# LOPY=`find ${DEV_PYTHON_SRC_TOP} -name "*.py" -exec egrep -i "[a-zA-Z:]" {} \; | wc -l`
+	LOPY=`find ${DEV_PYCHARM_SRC_TOP} -name "*.py" | egrep -iv venv | xargs egrep -i "[a-zA-Z:]" | wc -l`
+	echo $LOPY
+
+	echo -n "Ruby LOC: "
+	LOR=`find ${DEV_RUBY_SRC_TOP} -name "*.rb" -exec egrep -i "[a-zA-Z]" {} \; | wc -l`
+	echo $LOR
+
+	echo -n "TOTAL LOC: "
+	let "LOT = $LOJ + $LOGO + $LON + $LOPY + $LOR"
+	echo $LOT
+}
+
+doWork | tee -a ${HOME}/.logs/wlocLog

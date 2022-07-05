@@ -1,0 +1,11 @@
+#! /usr/bin/bash
+
+# Pseudocode:
+#   Open the location of the target MP3's
+#   Read the contents of the folder & select just mp3 files
+#   Take a random number from 0 to 1 less than the end of the list
+#   Return the full path of the file
+#
+#
+
+java -cp ${HOME}/myBin/JAVA/CLASSES RandomMp3Memo

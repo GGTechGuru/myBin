@@ -1,0 +1,11 @@
+#! /usr/bin/bash
+
+DESCRIPTION="You Tube Front End Development"
+echo "${0}: $DESCRIPTION"
+
+# Basic
+nohup firefox "https://www.youtube.com/results?search_query=basic+front+end+development" >> ${HOME}/.logs/ytFeDev &
+
+# Advanced
+nohup firefox "https://www.youtube.com/results?search_query=advanced+front+end+development" >> ${HOME}/.logs/ytFeDev &
+

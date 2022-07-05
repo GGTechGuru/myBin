@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# Alt: finger `whoami` | grep 'Name:' | awk -F"Name: " '{print $2}' | awk '{print $1}'
+
+    export MYID=`id -u`
+
+    cat /etc/passwd | awk -F':' '{print $3 ":" $5}' | awk '{print $1}' | while read ID_NAME
+    do
+        ID=`echo ${ID_NAME} | awk -F: '{print $1}'`
+
+        if [ "$ID" -eq "$MYID" ]
+        then
+            export MYNAME=`echo ${ID_NAME} | awk -F: '{print $2}'`
+            echo $MYNAME
+            break
+            return
+        fi
+    done
+

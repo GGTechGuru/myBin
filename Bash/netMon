@@ -1,0 +1,53 @@
+#!/usr/bin/bash
+# Pseudocode:
+#     Loop a set number of seconds
+#     Turn off wifi if the following are true:
+#         Ethernet connection (usually USB tethering) is on
+#         VPN is off & there is a connection to a savings account
+
+touch /tmp/netMonDebug
+chmod go-rwx /tmp/netMonDebug
+
+while [ : ]
+do
+	sleep 10
+        date >> /tmp/netMonDebug
+
+        expressvpn status | egrep 'Connected' >> /tmp/netMonDebug
+        export VPN_ON="$?"
+
+        nmcli radio wifi | egrep -i 'enabled' >> /tmp/netMonDebug
+        export WIFI_ENABLED="$?"
+        if [ "$WIFI_ENABLED" != "0" ]
+        then
+            continue
+        fi
+
+	export msg_set_wifi_off="`date`: Turning off wifi (insecure). CONNECT USB/ethernet AND OR VPN."
+
+        lsof -a -i4 -i6 -itcp | egrep -i 'ameritrade|fidelity|schwab|turbotax|intuit' >> /tmp/netMonDebug
+        export FOUND_SITE="$?"
+        # echo "FOUND_SITE==${FOUND_SITE}" >> /tmp/netMonDebug
+
+	if [ "$FOUND_SITE" == "0" ]
+	then
+            if [ "$VPN_ON" != "0" ]
+            then
+
+		xmessage -nearmouse -timeout 4 ${msg_set_wifi_off}
+	        export msg_vpn_not_on="VPN is not on."
+                echo ${msg_vpn_not_on} >> /tmp/netMonDebug
+		echo ${msg_set_wifi_off} >> /tmp/netMonDebug
+		nmcli radio wifi off
+            fi
+	fi
+
+	nmcli con show --active | egrep -i ethernet  >> /tmp/netMonDebug
+	if [ $? == 0 ]
+	then
+		xmessage -nearmouse -timeout 4 ${msg_set_wifi_off}
+		echo ${msg_set_wifi_off} >> /tmp/netMonDebug
+		nmcli radio wifi off
+	fi
+
+done

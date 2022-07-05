@@ -1,0 +1,44 @@
+#! /usr/bin/node
+
+/* Pseudocode:
+   Outline:
+	Run gnome-calendar in a 10 minute loop
+
+   Steps:
+*/
+
+
+const { execSync } = require('child_process');
+
+const open = require('open');
+const util = require('util');
+
+const GC_FMT='nohup bash -c "(%s %s %s) && sleep %d" &';
+
+const GC_LOOP_MAX_SECONDS=1800;
+const GC_LOOP_INCREMENT=600;
+var gc_loop_seconds = GC_LOOP_INCREMENT;
+
+const GC_WIFI_ON='(nmcli radio wifi on) && (sleep 10)';
+
+const GC_NEW_WIN='--new-window';
+const GC_CAL_URL='https://calendar.google.com';
+
+execSync(GC_WIFI_ON);
+
+for (;;) {
+    
+    var gc_cmd = util.format(GC_FMT, process.env.STABLE_BROWSER, GC_NEW_WIN, GC_CAL_URL, gc_loop_seconds);
+    gc_loop_seconds =	gc_loop_seconds < GC_LOOP_MAX_SECONDS
+			    ? gc_loop_seconds + GC_LOOP_INCREMENT
+			    :  GC_LOOP_MAX_SECONDS;
+
+    (async()=> {
+        console.log(util.format("Running cmd:%s", gc_cmd));
+    })();
+
+    execSync(gc_cmd);
+
+}
+    
+

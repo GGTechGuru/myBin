@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+find $1 -type f -name '*.mp3' | while read F; do     echo $(printf %q "$F"); done | sort -R | xargs mpg123 
+

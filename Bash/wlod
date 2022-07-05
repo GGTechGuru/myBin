@@ -1,0 +1,10 @@
+#! /usr/bin/bash
+
+function doWork() {
+    echo; date
+    echo -n "DESIGN LOC: "
+    find ${DEV_DSN_TOP} -type f -exec egrep -i "[a-zA-Z{}]" {} \; | wc -l
+    echo
+}
+
+doWork | tee -a ${HOME}/.logs/wlodLog

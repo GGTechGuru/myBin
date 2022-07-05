@@ -1,0 +1,37 @@
+#! /usr/bin/bash
+
+# File: turnBg
+THIS_FILE="turnBg"
+THIS_PID="$$"
+
+ps -elf | egrep -v "defunct|grep|${THIS_PID}" | grep ${THIS_FILE}
+if [ $? == 0 ]
+then
+    echo "`date`: ${THIS_FILE} already in processes list. Exiting"
+    exit
+fi
+
+#gsettings set org.gnome.desktop.background picture-options 'wallpaper'
+
+gsettings set org.gnome.desktop.background picture-options 'scaled'
+
+while [ : ]
+do
+
+    find /home/sbp366x24/Pictures/BackgroundPictures/SaferSpeculation -type f | sort -R | while read np
+    do
+        gsettings set org.gnome.desktop.background picture-uri file:${np}
+
+        sleep 10
+    done
+
+    find /home/sbp366x24/Pictures/BackgroundPictures -type f | sort -R | while read np
+    do
+        gsettings set org.gnome.desktop.background picture-uri file:${np}
+
+        sleep 10
+    done
+
+done
+
+

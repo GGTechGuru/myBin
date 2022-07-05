@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+
+( ( ( egrep -i URGENT ~/Documents/WORK_COUNTUP.txt ) | sort -R | head -1 ) &&
+( sort -R ~/Documents/WORK_COUNTUP.txt | head -1 ) ) |
+sort -R | head -1

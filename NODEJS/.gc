@@ -1,0 +1,26 @@
+#! /usr/bin/node
+
+/* Pseudocode:
+   Outline:
+	Run gnome-calendar in a 10 minute loop
+
+   Steps:
+*/
+
+
+const { execSync } = require('child_process');
+const util = require('util');
+
+const GC_FMT='nohup bash -c "(gnome-calendar) && sleep %s "&';
+const GC_LOOP_SECONDS='600';
+
+
+for (;;) {
+    
+    let gc_cmd = util.format(GC_FMT, GC_LOOP_SECONDS);
+
+    execSync(gc_cmd);
+
+}
+    
+

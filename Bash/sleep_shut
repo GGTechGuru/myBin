@@ -1,0 +1,44 @@
+#! /usr/bin/bash
+
+if [ "$1" == "background" ]
+then
+
+    # nohup mushuf 50 `cat /home/sbp366x24/Music/AM_MW_GEN` &
+
+    export T2S="$2"
+    
+    sleep ${T2S}
+    
+    export CURV="`amixer get Master | grep 'Mono:' | awk '{print $4}' | sed -e 's/[[]//g' | sed -e 's/[]]//g'`"
+    
+    # amixer set Master 50%+
+    amixer set Master 90%
+    
+    espeak `myname`
+    # espeak 'Five minutes to system shutdown. Save work.' && amixer set Master ${CURV}
+    espeak 'Five minutes to system shutdown. Save work.'
+
+    gnome-screensaver-command -l
+
+    ps -elf | egrep 'mpg|mushuf|private_audio_sequence'| grep -v grep | awk '{print $4}' | xargs kill
+
+    (
+        cd /home/sbp366x24/.config
+        rm -rf google-chrome
+    )
+
+    nohup mushuf 50 /home/sbp366x24/Music/OTHER/AUDIO_QUALITY_HIGH/TIME_MULTITASKING/Brian_Tracy &
+
+    nohup current_usefuls &
+    
+    sleep 300
+    
+    nmcli radio wifi off
+
+    shutdown now
+    
+else
+    
+    nohup sleep_shut "background" "$1" &
+
+fi

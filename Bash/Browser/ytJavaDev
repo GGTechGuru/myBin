@@ -1,0 +1,8 @@
+#! /usr/bin/bash
+
+DESCRIPTION="You Tube Java Development"
+echo "${0}: $DESCRIPTION"
+
+# Advanced
+nohup firefox "https://www.youtube.com/results?search_query=advanced+java+development" >> ${HOME}/.logs/ytFeDev &
+

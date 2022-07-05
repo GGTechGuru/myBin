@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+DESCRIPTION="Cheap rooms for rent near San Jose"
+echo "${0}: $DESCRIPTION"
+
+nohup firefox "https://sfbay.craigslist.org/search/sby/roo?sort=priceasc&min_price=600&max_price=999&availabilityMode=0" >> ~/.logs/rent &
+

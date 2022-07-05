@@ -1,0 +1,36 @@
+#! /usr/bin/bash
+
+nohup bash -c "nmcli radio wifi on && \
+        sleep 10 && \
+        ${JOBAPPS_BROWSER} --new-window \
+	${PYDEV_200K_900K} \
+	${PY_TEST_AUTO} \
+	${QA_TEST_NEARBY} \
+	${QA_TEST_REMOTE} \
+	${MANUAL_QA_REMOTE_LOW_SALARY} \
+	${SRE}" & 
+
+nohup bash -c "nmcli radio wifi on && \
+        sleep 10 && \
+        ${JOBAPPS_BROWSER} --new-window \
+        simplyhired.com \
+        monster.com \
+        careerbuilder.com \
+        dice.com \
+        indeed.com \
+        " &
+
+nohup bash -c "nmcli radio wifi on && \
+        sleep 10 && \
+        ${JOBAPPS_BROWSER} --new-window \
+        https://www.google.com/search?q=entry+level+technical+writer+jobs \
+        https://www.google.com/search?q=entry+level+computer+security+jobs \
+        https://www.google.com/search?q=entry+level+program+manager+jobs \
+        https://www.google.com/search?q=entry+level+computer+programmer+jobs \
+        " &
+
+nohup bash -c "nmcli radio wifi on && \
+        sleep 10 && \
+        ${JOBAPPS_BROWSER} --new-window \
+        https://www.bing.com/search?q=top%2Bfreelance%2Bprogramming%2Bsites \
+        " &

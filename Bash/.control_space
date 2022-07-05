@@ -1,0 +1,18 @@
+#! /usr/bin/bash
+
+while [ : ]
+do
+    export GCS=`du -s ${HOME}/.config/google-chrome | awk '{print $1}'`
+    
+    if [ "${GCS}" -gt "71950858" ] # 10% of rootfs
+    then
+        echo "google-chrome too large: " $GCS
+        (
+            cd ${HOME}/.config
+            rm -rf google-chrome
+        )
+    fi
+
+    sleep 600 # Check every 10 minutes
+
+done

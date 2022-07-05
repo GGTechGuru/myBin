@@ -1,0 +1,17 @@
+#! /usr/bin/bash
+# Pseudocode:
+# Check one of the following to see if there is an internet connection.
+# If connected, exit with 0, otherwise, exit with 1.
+
+nmcli radio wifi | grep 'enabled' >> /tmp/net_is_on_debug
+export WIFI_ON="$?"
+
+nmcli con show --active | egrep -i ethernet  >> /tmp/net_is_on_debug
+export ETHERNET_ON="$?"
+
+if [ "$WIFI_ON" == "0" -o "$ETHERNET_ON" == "0" ]
+then
+    exit 0
+else
+    exit 1
+fi

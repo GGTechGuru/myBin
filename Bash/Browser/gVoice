@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+DESCRIPTION="Google Voice"
+echo "${0}: $DESCRIPTION"
+
+nohup /opt/google/chrome/chrome "https://voice.google.com/calls" >> ${HOME}/.logs/GoogleVoice 2>&1 &
+

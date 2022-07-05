@@ -1,0 +1,131 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+set -o vi
+
+export GOPATH="${HOME}/Projects/GoProjects/InvestmentExpert/src/main/go"
+# export GOPATH="${HOME}/go"
+
+alias p='pwd '
+
+alias sb='source ${HOME}/bashrc'
+
+alias sb='source ~/.bashrc '
+
+alias vb='vi -R ~/.bashrc '
+alias vr='vi -R '
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+export DEV_DSN_TOP="${HOME}/DESIGNS/"
+# Current
+export DEV_DSN_DIR="${HOME}/DESIGNS/SHARPE"
+
+export DEV_JAVA_SRC_TOP="${HOME}/IdeaProjects/"
+export DEV_JAVA_SRC_DIR="${HOME}/IdeaProjects/InvestmentExpert/src"
+
+export DEV_GO_SRC_TOP="${HOME}/Projects/GoProjects/"
+export DEV_GO_SRC_DIR="${HOME}/Projects/GoProjects/InvestmentExpert/src"
+
+export DEV_NODE_SRC_TOP="${HOME}/Projects/NodeJsProjects/"
+export DEV_NODE_SRC_DIR="${HOME}/Projects/NodeJsProjects/InvestmentExpert/src"
+
+export DEV_PYTHON_SRC_TOP="${HOME}/Projects/PythonProjects/"
+export DEV_PYTHON_SRC_DIR="${HOME}/Projects/PythonProjects/InvestmentExpert/src"
+
+export DEV_PYCHARM_SRC_TOP="${HOME}/Projects/PyCharmProjects"
+export DEV_PYCHARM_SRC_DIR="${HOME}/Projects/PyCharmProjects/InvestmentExpert"
+
+export DEV_RUBY_SRC_TOP="${HOME}/Projects/RubyProjects/"
+export DEV_RUBY_SRC_DIR="${HOME}/Projects/RubyProjects/InvestmentExpert/src"
+
+
+export QA_SELENIUM_SRC_TOP="${HOME}/SeleniumProjects/"
+export QA_SELENIUM_SRC_DIR="${HOME}/SeleniumProjects/src"
+
+
+alias csj='cd ${DEV_JAVA_SRC_DIR} ; pwd '
+alias mdj='find ${DEV_JAVA_SRC_DIR} -type f -name "*.java" -exec more {} \;'
+
+alias csg='cd ${DEV_GO_SRC_DIR}/main/go ; pwd '
+alias mdg='find ${DEV_GO_SRC_DIR} -type f -name "*.go" -exec more {} \;'
+
+alias csn='cd ${DEV_NODE_SRC_DIR}/main/node ; pwd '
+alias mdn='find ${DEV_NODE_SRC_DIR} -type f -name "*.js" -exec more {} \;'
+
+alias cspy='cd ${DEV_PYTHON_SRC_DIR}/main/python ; pwd '
+alias mdpy='find ${DEV_PYTHON_SRC_DIR} -type f -name "*.py" -exec more {} \;'
+
+alias cspyc='cd ${DEV_PYCHARM_SRC_DIR}; pwd '
+
+alias cdsn='cd ${DEV_DSN_DIR} ; pwd '
+alias vdsn='find ${DEV_DSN_DIR} -type f -exec vi -R {} \;'
+
+alias csr='cd ${DEV_RUBY_SRC_DIR}/main/ruby ; pwd '
+alias mdr='find ${DEV_RUBY_SRC_DIR} -type f -name "*.rb" -exec more {} \;'
+
+
+alias cssl='cd ${QA_SELENIUM_SRC_DIR} ; pwd '
+alias mdsl='find ${QA_SELENIUM_SRC_DIR} -type f -exec more {} \;'
+
+alias sbp='source ~/.bash_profile '
+alias vbp='cp ~/.bash_profile /tmp/.; vi -R ~/.bash_profile '
+
+
+# alias visn='vi -R `wc -l * | sort -n | awk \'{print $2}\'`'
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+alias au='nohup rhythmbox "${HOME}/Music/AUDIO/AUDIO QUALITY - LOW/TIME Multitasking" &'
+au
+
+
+nohup seeChx.sh &
+
+alias rep='nohup soffice ${HOME}/Documents/URGENT_COUNTUPS_CUMULATIVE.xls &'
+rep
+
+# Cheapest new houses in the U.S.
+house &
+
+# Skim book bullet points
+clear
+more `find ${HOME}/Documents/BookBulletPoints -type f | egrep -vi 'swp|nohup' | sort -R`
+
+
+clear
+more `find ${HOME}/DivideNeeds -type f | egrep -vi 'swp|nohup' | sort -R`
+vi -R `find ${HOME}/DivideNeeds -type f | egrep -vi 'swp|nohup' |  sort -R`
+
+nohup workDev.sh &
+
+nohup soffice /home/croesus/Desktop/GerardGold_SoftwareDeveloper_updated.doc &
+
+nohup firefox "https://www.youtube.com/results?search_query=advanced+emacs" &
+nohup emacs /tmp/countupsForSession &
+
+nohup thunderbird &
+
+# nohup firefox "https://sfbay.craigslist.org/search/sby/roo?sort=priceasc&min_price=600&max_price=999&availabilityMode=0" &
+
+# Cheap apartments in California.
+apt &
+
+# Cheap rooms for rent near San Jose.
+rent &
+
+newWp.sh &
+
+gVoice &
+

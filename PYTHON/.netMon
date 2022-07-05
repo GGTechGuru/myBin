@@ -1,0 +1,31 @@
+#/usr/bin/bash
+
+while [ : ]
+do
+
+	# netstat -a | egrep -i 'ameritrade|fidelity' > /dev/null
+	netstat -a | egrep -i 'ameritrade|fidelity' >> /tmp/netMonDebug
+
+	if [ $? == 0 ]
+	then
+		date >> /tmp/netMonDebug
+		echo >> /tmp/netMonDebug
+
+		nmcli radio wifi off
+		# xmessage "Turning off wifi (insecure). CONNECT USB/ethernet"
+
+                sleep 60
+	fi
+
+	nmcli con show --active | grep -i ethernet  >> /tmp/netMonDebug
+	if [ $? == 0 ]
+	then
+		date >> /tmp/netMonDebug
+		echo >> /tmp/netMonDebug
+
+		nmcli radio wifi off
+	fi
+
+	sleep 10
+
+done

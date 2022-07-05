@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+DESCRIPTION="Google search: cheapest apartments in California"
+echo "${0}: $DESCRIPTION"
+
+nohup firefox "https://www.google.com/search?client=firefox-b-1-ab&ei=IGrSW7biFpiy0PEPl_GuyAU&q=cheapest+apartments+in+California&oq=cheapest+apartments+in+California&gs_l=psy-ab.3..0j0i22i30l9.84219.90585..90788...3.0..1.224.2364.26j1j1......0....1..gws-wiz.......0i71j35i39j0i67j0i20i263j0i22i10i30.fimX1jlKNB4"  >> ~/.logs/rent &
+

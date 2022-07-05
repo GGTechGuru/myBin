@@ -1,0 +1,21 @@
+
+# Loop ~ daily, from startup (or AWS if ~free)
+	# Step 1: Read (~CSV / JSON) of {sym, high-trigger price, low-trigger}
+	# Step 2: Get recent_quote(sym)
+	# Step 3: See if high/low trigger prices crossed
+	# Step 4: Collect all crossed info
+	# Step 5: Send SMS via email to # (mine)
+
+# VERY GOOD: PROBABLY MOVE COMMENTS AND TASKS INTO OTHER RELATED FILES: *BACKTESTING*
+# PULL DESIGNS AND CODE FROM OTHER PLACES INTO THIS FOLDER. ADD OTHER BACKTESTING MODULES AS A COUNTDOWN MUST URGENTLY.
+# MAIN PATTERNS / SCREENS TO HISTORICALLY CHECK AND SEE WHAT HAPPENS AFTER:
+
+# BACKTEST NEW IDEAS DAILY
+
+# Also add methods to
+	# Get ALL symbols for
+		# ETFS
+		# Stocks
+
+# Use these symbols to try to replicate finviz with own screener (in Python & / NodeJS) and use to extent possible instead of web.)
+	# Go feature by feature

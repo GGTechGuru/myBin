@@ -1,0 +1,12 @@
+#! /usr/bin/bash
+
+# Pseudocode:
+#   Get the user/login name
+#   Read /etc/passwd line by line
+#   Split each line by ":" and get the login name & full-name fields
+#   If the login name matches, split the full name by " " and
+#   return the first name.
+#
+
+
+java -cp ${HOME}/myBin/JAVA/CLASSES MyName

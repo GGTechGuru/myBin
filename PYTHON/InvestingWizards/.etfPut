@@ -1,0 +1,10 @@
+#! /usr/bin/python
+
+from subprocess import call
+
+DESCRIPTION="Puts candidates screener for ETFs"
+# echo "${0}: $DESCRIPTION"
+print(__file__  + ": " + DESCRIPTION)
+
+# nohup firefox "https://etfdb.com/screener/#tab=returns&sort_by=one_week_return&sort_direction=asc&page=1&inverse=false&assets_start=500&one_week_return_end=0&four_week_return_end=0&ytd_end=0&fifty_two_week_end=0&three_ytd_end=0" >/dev/null 2>&1 &
+call( [ "firefox", "https://etfdb.com/screener/#tab=returns&sort_by=one_week_return&sort_direction=asc&page=1&inverse=false&assets_start=500&one_week_return_end=0&four_week_return_end=0&ytd_end=0&fifty_two_week_end=0&three_ytd_end=0" ] )

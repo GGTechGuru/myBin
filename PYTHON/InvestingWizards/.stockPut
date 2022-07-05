@@ -1,0 +1,8 @@
+#! /usr/bin/python
+
+from subprocess import call
+
+DESCRIPTION="Puts candidates screener for stocks"
+print( __file__ + ": " + DESCRIPTION )
+
+call([ "firefox", "https://finviz.com/screener.ashx?v=141&f=cap_smallover,sh_opt_option,sh_price_o5,ta_perf_1wdown,ta_perf2_13w50u&o=perf4w" ])

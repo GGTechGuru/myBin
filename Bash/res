@@ -1,0 +1,10 @@
+#! /usr/bin/bash
+(
+	cd ${HOME}/Documents/RESUME
+	(
+		ls -rt | egrep 'SoftwareDeveloper' | tail -1
+		ls -rt | egrep 'SoftwareEngineer' | tail -1
+	) | tee /tmp/resList
+
+        nohup soffice `cat /tmp/resList` &
+)

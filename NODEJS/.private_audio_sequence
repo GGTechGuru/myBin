@@ -1,0 +1,107 @@
+#! /usr/bin/node
+
+/* Pseudocode:
+   Outline:
+	For each line in a configured list of folders,
+	Shuffle play audio content from the first folder, to completion.
+	Then add the second folder and shuffle play audio from both folders, to completion.
+        And so on for all folders listed in the file.
+
+   Steps:
+	Read one folder path per line from ~/MY_CONFIGS/private_audio_sequence.cfg
+        // https://attacomsian.com/blog/reading-a-file-line-by-line-in-nodejs
+
+	For each folder {
+
+	     Append the folder to a list (initially empty before the first folder).
+
+             Pass the current list of folders to a shuffle play command ("mushuf" for the moment)
+
+             Wait for the shuffle play command to complete
+             // execSync('nohup mushuf <f1> <f2> ... &');
+
+             Optional {
+                 Sleep a small amount of time to allow other invocations of the shuffle play
+                 command. (~ 60 seconds)
+             }
+        }
+*/
+
+
+/* From/to config:
+	/home/sbp366x24/Music/LEIL
+	/home/sbp366x24/Music/INTERVIEW_LEIL
+*/
+
+const { execSync } = require('child_process');
+
+const fs = require('fs');
+const readline = require('readline');
+const util = require('util');
+
+var path = require('path');
+
+
+const PAS_CFG = "private_audio_sequence.cfg";
+const cfg_path = path.join(process.env.HOME, "MY_CONFIGS", PAS_CFG);
+
+const SHUFFLE_PLAY='nohup mushuf %s &'
+
+// console.log(cfg_path);
+
+var all_folders = [];
+
+
+rl = readline.createInterface({
+    input: fs.createReadStream( cfg_path ),
+    output: process.stdout,
+    terminal: false
+});
+
+rl.on('line', (line_in)=> {
+    // console.log(line_in);
+    all_folders.push(line_in);
+
+    // console.log(all_folders);
+
+}).on('close', () => {
+
+    console.log('EOF');
+
+    // console.log(all_folders);
+    
+    let growing_folders = [];
+    let spaced_folders = "X";
+    
+    let index = 0;
+    console.log(growing_folders);
+    for (; index < all_folders.length; index++) {
+    
+        console.log(all_folders[index]);
+    
+        growing_folders.push(all_folders[index]);
+    
+        let spaced_folders = Array.from(growing_folders).join(' ');
+    
+        // spaced_folders += " " + all_folders[index];
+    
+        console.log(spaced_folders);
+
+        let shuffle_cmd = util.format(SHUFFLE_PLAY, spaced_folders);
+
+        console.log(shuffle_cmd);
+
+        execSync(shuffle_cmd);
+    }
+    
+    /*
+    
+    // Not getting from ~/MY_CONFIGS/private_audio_sequence.cfg yet.
+    execSync('nohup mushuf \`cat /home/sbp366x24/Music/LEIL\` &');
+    execSync('nohup mushuf \`cat /home/sbp366x24/Music/INTERVIEW_LEIL\` &');
+    
+    
+    */
+    
+});
+

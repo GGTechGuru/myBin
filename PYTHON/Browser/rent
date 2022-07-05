@@ -1,0 +1,9 @@
+#! /usr/bin/python
+
+from subprocess import call
+
+DESCRIPTION="Cheap rooms for rent near San Jose"
+print(__file__ + ": " + DESCRIPTION)
+
+call(["firefox", "https://sfbay.craigslist.org/search/sby/roo?sort=priceasc&min_price=600&max_price=999&availabilityMode=0"])
+

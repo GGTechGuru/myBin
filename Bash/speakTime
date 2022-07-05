@@ -1,0 +1,24 @@
+# speakTime <minute-interval>
+# Speaks time in hours & minutes with AM / PM. 12 AM is 00.
+#! /usr/bin/bash
+
+export TNOW=`date "+%H:%M %p"`
+spd-say "${TNOW}"
+export INTERVAL=$1
+
+while [ : ]
+do
+  export TNOW=`date "+%H:%M:%p"`
+  # echo ${TNOW}
+  # spd-say "The time now is ${TNOW}"
+  say "The time now is ${TNOW}"
+
+  export MINNOW=`date "+%M"`
+  export SECNOW=`date "+%S"`
+
+  export REMSECS=`echo "((${INTERVAL} - (${MINNOW} % ${INTERVAL})) * 60) - ${SECNOW}" | bc`
+
+  echo ${REMSECS}
+
+  sleep ${REMSECS}
+done

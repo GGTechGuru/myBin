@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+import os
+from subprocess import call
+from random import shuffle
+
+# export NICE_GIRLS="${HOME}/Pictures/NiceGirls"
+NICE_GIRLS = os.environ["HOME"] + "/Pictures/NiceGirls"
+
+randList = []
+for entry in os.listdir(NICE_GIRLS):
+    gp = os.path.join(NICE_GIRLS, entry)
+    if os.path.isdir(gp):
+        continue
+    randList.append(gp)
+
+shuffle(randList)
+
+for gp in randList[:10]:
+    call(["firefox", gp])

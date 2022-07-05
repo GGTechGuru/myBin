@@ -1,0 +1,8 @@
+#! /usr/bin/bash
+export NICE_GIRLS="${HOME}/Pictures/NiceGirls"
+ls ${NICE_GIRLS} | sort -R | head -11 | while read p
+do
+    export pic="file://${NICE_GIRLS}/${p}"
+    # echo $pic
+    firefox ${pic}
+done >>~croesus/.logs/seeChx 2>&1 &

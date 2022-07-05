@@ -1,0 +1,3 @@
+ALSA lib pulse.c:242:(pulse_connect) PulseAudio: Unable to connect: Connection terminated
+
+aplay: main:830: audio open error: Connection refused

@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+clear
+more ${HOME}/Projects/TODO
+read done
+
+vi -R `wc -l * | sort -n | awk '{print $2}'`

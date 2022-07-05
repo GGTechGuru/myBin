@@ -1,0 +1,6 @@
+#! /usr/bin/python
+import os
+from subprocess import call
+
+logFile = os.environ["HOME"] + "/.logs/wlodLog"
+call (["more", logFile ] )

@@ -1,0 +1,4 @@
+#! /usr/bin/bash
+
+nohup bash -c "${STABLE_BROWSER} --new-window www.turbotax.com " &
+

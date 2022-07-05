@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+export THIS_FILE=`basename $0`
+
+export VOL_MU="100"
+
+echo "First arg: " "$1"
+
+REXP='^[0-9]+$'
+if [[ $1 =~ $REXP ]]
+then
+    export VOL_MU="$1"
+    shift
+fi
+
+export VOL_MEMO=`expr \( 400 + ${VOL_MU} \) / 5`
+
+ps -elf | egrep -vi 'grep|defunct' | egrep "mpg|${THIS_FILE}" > /tmp/${THIS_FILE}_COUNT
+export THIS_COUNT=`wc -l /tmp/${THIS_FILE}_COUNT | awk '{print $1}'`
+
+if [ "${THIS_COUNT}" -gt "1" ]
+then
+    echo "mpg|${THIS_FILE}" "running instances count is: " "${THIS_COUNT}" ". Exiting." 
+    exit 1
+fi
+
+# find $* -type f -name '*.mp3' | while read F; do     echo $(printf %q "$F"); done | sort -R | xargs mpg321 -g "$VOL_MU"	
+find $* -type f -name '*.mp3' | while read F
+do
+    export MODF=$(printf %q "$F")
+    echo $MODF
+done | sort -R | while read M2
+do
+    mpg321 -g "$VOL_MEMO" `randomMp3Memo`
+
+    ls -ld "$M2"
+    mpg321 -g "$VOL_MU" "$M2"
+
+done
+

@@ -1,0 +1,17 @@
+# Resume saleability update
+
+#! /usr/bin/bash
+
+ja
+
+(
+  cd ${HOME}/Desktop/FAST_JOBS
+  for rtxt in *.txt
+  do
+    cp ${rtxt} /tmp/.${USER}.${rtxt}.`date "+%s"`
+    chmod u+w ${rtxt}
+    vi -R ${rtxt}
+    chmod ugo-w ${rtxt}
+  done
+)
+

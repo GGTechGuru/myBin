@@ -1,0 +1,15 @@
+#! /usr/bin/python
+
+import os
+
+cpid=os.fork()
+if (cpid == 0):
+    import subprocess
+    # from subprocess import call
+
+    DESCRIPTION="GoogleVoice"
+    print(__file__ + ": " + DESCRIPTION)
+    
+    logFile = os.environ["HOME"] + "/.logs/" + DESCRIPTION
+    with open(logFile, "a") as log:
+        subprocess.Popen(["/opt/google/chrome/chrome", "https://voice.google.com/calls"], stdout=log, stderr=log)

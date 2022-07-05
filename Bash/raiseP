@@ -1,0 +1,52 @@
+#! /usr/bin/bash
+
+# BROWSER PRIORITIES
+export BRAVE="-15"
+export CHROME="-15"
+export FIREFOX="-2"
+export OPERA="-2"
+export VIVALDI="-10"
+
+export SOFFICE="-2"
+
+export PUMA="-5"
+export RUNSERVER="-5"
+export THUNDERBIRD="-5"
+
+export BASH="-10"
+export CSH="-10"
+export VPN="-10"
+
+export LOWRITER="-15"
+export SNAPD="-15"
+export TOR="-15"
+export WIFI="-15"
+
+
+while [ : ]
+do
+
+    # Firefox occasionally hanging Ubuntu 21.10 -- so drop priority until fixed
+    ps -elf | grep -v grep | egrep -i 'firefox|opera|soffice' | awk '{print $4}' | xargs renice -n -2
+
+    ps -elf | grep -v grep | egrep -i 'puma|runserver|thunderbird' | awk '{print $4}' | xargs renice -n -5
+
+    ps -elf | grep -v grep | egrep -i 'bash|chrome|csh|vivaldi|vpn' | awk '{print $4}' | xargs renice -n -10
+
+    ps -elf | grep -v grep | egrep -i 'lowriter|snapd|tor|wifi|wi\-fi' | awk '{print $4}' | xargs renice -n -15
+
+    ps -elf | grep -v grep | egrep -i 'find' | awk '{print $4}' | xargs renice -n -16
+
+    ps -elf | grep -v grep | egrep -i 'android|audacity|download|rhythmbox' | awk '{print $4}' | xargs renice -n -17
+
+    ps -elf | grep -v grep | egrep -i '/apt|brasero|docker|install|update|upgrade|vagrant|virtual|vm|wget|wps' | awk '{print $4}' | xargs renice -n -18
+
+    ps -elf | grep -v grep | egrep -i 'key|mouse|netMon|raiseP' | awk '{print $4}' | xargs renice -n -19
+
+
+    # Special Case: lsof - PID in column 2
+    # lsof | grep -v grep | egrep -i 'download' | awk '{print $2}' | xargs renice -n -19
+
+    sleep 10
+
+done

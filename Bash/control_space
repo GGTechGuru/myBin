@@ -1,0 +1,26 @@
+#! /usr/bin/bash
+
+export ROOTFS="/dev/sda2"
+
+while [ : ]
+do
+
+    export AVAILABLE=`df | grep "${ROOTFS}" | awk '{print $4}'`
+    export CEILING=`expr "${AVAILABLE}" / 10`
+
+    export GCS=`du -s ${HOME}/.config/google-chrome | awk '{print $1}'`
+    
+    if [ "${GCS}" -gt "${CEILING}" ] # 10% of available
+    then
+        echo "google-chrome too large: " $GCS
+        echo "AVAILABLE: " ${AVAILABLE} ", CEILING: " ${CEILING} ",GCS: " ${GCS}
+
+        (
+            cd ${HOME}/.config
+            rm -rf google-chrome
+        )
+    fi
+
+    sleep 60 # Check every minute
+
+done

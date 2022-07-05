@@ -1,0 +1,45 @@
+#!/usr/bin/bash
+
+while [ : ]
+do
+
+	# netstat -a | egrep -i 'ameritrade|fidelity' >> /tmp/netMonDebug
+	export msg_off="`date`: Turning off wifi (insecure). CONNECT USB/ethernet"
+
+	# lsof | egrep -i 'ameritrade|fidelity|schwab' >> /tmp/netMonDebug
+        lsof -a -i4 -i6 -itcp | egrep -i 'ameritrade|fidelity|schwab|turbotax|intuit' >> /tmp/netMonDebug
+        export FOUND_SITE="$?"
+        echo "FOUND_SITE==${FOUND_SITE}" >> /tmp/netMonDebug
+
+	# if [ $? == 0 ]
+	if [ "$FOUND_SITE" == "0" ]
+	then
+		# xmessage -nearmouse -timeout 4 ${msg_off}
+		echo ${msg_off} >> /tmp/netMonDebug
+
+		date >> /tmp/netMonDebug
+		echo >> /tmp/netMonDebug
+
+		nmcli radio wifi off
+
+        else
+		echo "Did not enter first IF block" >> /tmp/netMonDebug
+
+	fi
+
+	nmcli con show --active | grep -i ethernet  >> /tmp/netMonDebug
+	if [ $? == 0 ]
+	then
+		# xmessage -nearmouse -timeout 4 ${msg_off}
+		echo ${msg_off} >> /tmp/netMonDebug
+
+		date >> /tmp/netMonDebug
+		echo >> /tmp/netMonDebug
+
+		nmcli radio wifi off
+
+	fi
+
+	sleep 10
+
+done
